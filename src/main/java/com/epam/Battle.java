@@ -12,8 +12,8 @@ import javax.management.Attribute;
 
 
 /**
- * @version 1.0 beta
- * @author Konstantin Garkusha
+ * @version 1.0
+ * @author Mikhail Zinchik
  */
 public class Battle {
     private static final String NEWLINE = System.lineSeparator();
