@@ -2,14 +2,10 @@ package com.epam;
 
 import java.io.*;
 import java.util.Properties;
-
-
 import print.color.Ansi.*;
 import print.color.ColoredPrinter;
 import print.color.ColoredPrinterWIN;
-
 import javax.management.Attribute;
-
 
 /**
  * @version 1.0
@@ -26,7 +22,6 @@ public class Battle {
     private static int maxCountOfCruiser = 2;
     private static int maxCountOfDestroyer = 3;
     private static int maxCountOfSubmarine = 4;
-
     private static final char[][] computerField = new char[sizeOfField][sizeOfField];
     private static final char[][] playerField = new char[sizeOfField][sizeOfField];
 
@@ -51,9 +46,7 @@ public class Battle {
     }
 
     public static void main(String[] args){
-
         loadProperties();
-
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             String answer;
             while (true) {
@@ -134,11 +127,9 @@ public class Battle {
         //count of created ships
         int countOfShip = countOfDecker == 1 ? PlayersShips.countOfSubmarine : countOfDecker == 2 ?
                 PlayersShips.countOfDestroyer : countOfDecker == 3 ? PlayersShips.countOfCruiser : PlayersShips.countOfBattleShip;
-
         while (countOfShip < maxCountOfShip) {
             System.out.println(String.format("Create and place your %s!", countOfDecker == 1 ? "submarine" : countOfDecker == 2 ?
                     "destroyer" : countOfDecker == 3 ? "cruiser" : "battleship"));
-
             if (countOfDecker != 1) {
                 System.out.println("Write separate by spaces: coordinates, direction from this coordinates (n for north, e - east, s - south, w - west)" + NEWLINE + "Example: d2 e");
             } else {
@@ -303,7 +294,6 @@ public class Battle {
         }
     }
 
-
     private static void playerFireAndCheck(BufferedReader reader) throws IOException
     {
         printTheField();
@@ -326,11 +316,9 @@ public class Battle {
                 } else System.out.println("Coordinates are wrong! Please fire again");
             } else System.out.println("Coordinates are wrong! Please fire again");
         }
-
         if (computerField[fireLetter][fireNumber] == space) {
             computerField[fireLetter][fireNumber] = fail;
             printTheField();
-
         } else if (computerField[fireLetter][fireNumber] == ship) {
             computerField[fireLetter][fireNumber] = hit;
             System.out.println("You have hit him!");
@@ -344,11 +332,9 @@ public class Battle {
                             int ignore = computer.countOfDecker==1? ComputersShips.countOfSubmarine-- : computer.countOfDecker==2?
                                     ComputersShips.countOfDestroyer-- : computer.countOfDecker==3?
                                     ComputersShips.countOfCruiser-- : ComputersShips.countOfBattleShip--;
-
                             computer.areaAroundTheShip();
                             System.out.println("You have sank him!");
                             ComputersShips.countAliveShip--;
-
                             if(ComputersShips.countAliveShip == 0) {
                                 System.out.println("Congratulation! You win!");
                                 printTheField();
@@ -404,7 +390,6 @@ public class Battle {
     {
         ColoredPrinter cp = new ColoredPrinter.Builder(1, false)
                 .foreground(FColor.NONE).background(BColor.NONE).build();   //setting format
-
         System.out.println("              Player                                             Computer");
         System.out.println("    1  2  3  4  5  6  7  8  9  10                      1  2  3  4  5  6  7  8  9  10");
         for (int i = 0; i < sizeOfField; i++)
